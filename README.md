@@ -48,6 +48,15 @@ MiniEAP
 
 注2：如需要链接外部库，请在 `COMMON_CFLAGS`、`COMMON_LDFLAGS`、`LIBS` 中加入合适的 `-I -L -l` 等选项。
 
+## 安装
+
+> [!WARNING]
+> 该小结内容目前仅适用于使用 systemd 的 Linux 系统
+
+运行 `make install` 即可作为 systemd 的 service 进行管理，通过修改 `/etc/minieap.conf` 更改相关参数。
+
+对于个人桌面 Linux 用户，推荐运行 `make install-desktop` 进行安装，修改了 `make install` 的默认 service 模板，增加了睡眠/休眠后唤醒的重新启动和意外退出的自动重启规则。
+
 ## 运行
 
 具体选项请参阅 `minieap -h` 的输出。这里列出必需的几个选项。
