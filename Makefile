@@ -89,6 +89,18 @@ install: minieap minieap.1.gz minieap.service
 	install -m 644 minieap.service $(DESTDIR)$(SYSTEMDDIR)/system/
 	-systemctl enable minieap
 
+.PHONY: install-desktop
+install-desktop: minieap minieap-desktop.service minieap.1.gz
+	install -d $(DESTDIR)$(PREFIX)$(BINDIR)/
+	install -m 755 minieap $(DESTDIR)$(PREFIX)$(BINDIR)/
+	install -d $(DESTDIR)$(SYSCONFDIR)/
+	install -m 644 minieap.conf $(DESTDIR)$(SYSCONFDIR)/
+	install -d $(DESTDIR)$(PREFIX)/share/man/man1/
+	install -m 644 minieap.1.gz $(DESTDIR)$(PREFIX)/share/man/man1/
+	install -d $(DESTDIR)$(SYSTEMDDIR)/system/
+	install -m 644 minieap-desktop.service $(DESTDIR)$(SYSTEMDDIR)/system/minieap.service
+	-systemctl enable minieap
+
 .PHONY: uninstall
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)$(BINDIR)/minieap
